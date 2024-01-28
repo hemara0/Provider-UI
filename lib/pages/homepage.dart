@@ -4,6 +4,9 @@ import 'package:flutter_application_1/components/approved.dart';
 import 'package:flutter_application_1/components/dashboardRecords.dart';
 import 'package:flutter_application_1/components/navbar.dart';
 import 'package:flutter_application_1/components/requested.dart';
+import 'package:flutter_application_1/model/patient_model.dart';
+import 'package:flutter_application_1/pages/dashboardApproved.dart';
+import 'package:flutter_application_1/pages/dashboardRequested.dart';
 
 
 
@@ -31,8 +34,13 @@ class _ProviderAppState extends State<ProviderApp>{
           // ),
           actions: 
           <Widget>[
+            IconButton(onPressed: (){
+                 Navigator.push(context, MaterialPageRoute(builder: (context) => RetrieveApp()));
+                  
+                }, icon: Icon(Icons.new_releases_sharp),
+                iconSize: 35.0),
                 IconButton(onPressed: (){
-                 Navigator.push(context, MaterialPageRoute(builder: (context) => Requested()));
+                 Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardRequested()));
                   
                 }, icon: Icon(Icons.person_add),
                 iconSize: 35.0),
@@ -40,7 +48,7 @@ class _ProviderAppState extends State<ProviderApp>{
                // SizedBox(width: 16.0),
 
                 IconButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Approved()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardApproved()));
                 }, icon: Icon(Icons.fact_check_sharp),
                 iconSize: 35.0),
 

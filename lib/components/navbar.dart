@@ -24,7 +24,7 @@ class NavBar extends StatelessWidget{
           ListTile(
             title: Text('Patient Dashboard') ,
             onTap: () {
-              TempApp();
+              //TempApp();
             },
           ),
           ListTile(

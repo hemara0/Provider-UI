@@ -1,21 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_application_1/components/buildLists.dart';
-import 'package:flutter_application_1/components/navbar.dart';
-import 'package:flutter_application_1/components/requested.dart';
-//import 'package:flutter_application_1/main.dart';
 
 
-class AppointmentApproved extends StatefulWidget {
-  
-  @override
-  State<AppointmentApproved> createState() => _AppointmentApprovedState();
-}
-
-class _AppointmentApprovedState extends State<AppointmentApproved> {
-  
-  
-  List ApprovedUsers = [];
-  List userElement = 
     [{
     
     
@@ -34,7 +18,7 @@ class _AppointmentApprovedState extends State<AppointmentApproved> {
             {
                 "hospitalId": "hospital 2",
                 "doctorId": "doctor 2",
-                "bookingDate": "2024-01-24 17:20:06.734",
+                "bookingDate": "2023-06-01 17:20:06.734",
                 "visitDate": "14-08-2023",
                 "visitTime": "11:00 AM",
                 "reasonOfVisit": "abc",
@@ -272,7 +256,7 @@ class _AppointmentApprovedState extends State<AppointmentApproved> {
             {
                 "hospitalId": "hospital 2",
                 "doctorId": "doctor 2",
-                "bookingDate": "2024-01-24 17:20:06.734",
+                "bookingDate": "2023-06-01 17:20:06.734",
                 "visitDate": "14-08-2023",
                 "visitTime": "11:00 AM",
                 "reasonOfVisit": "abc",
@@ -494,138 +478,4 @@ class _AppointmentApprovedState extends State<AppointmentApproved> {
     "user_pincode": "123456",
     "user_state": "ka"
 }
-];
-
-  
-  @override
-  
-  Widget build(BuildContext context) {
-   List userOrders = getApprovedUsers();
-   List fieldIcons = [
-      Icons.local_hospital_outlined,
-      Icons.person_2_outlined,
-      Icons.date_range_outlined,
-      Icons.lock_clock_outlined,
-      Icons.type_specimen_outlined,
-      Icons.track_changes
-    ];
-  //   for(var ele in userElement){
-  //     for(var order in ele["user_orders"]["appointment"]){
-  //       if(order["bookingDate"] == "2024-01-24 17:20:06.734" && order["status"] == "Approved"){
-  //         var user = {"user_name": ele['user_name'], "user_id" : ele['_id'], "appointment" : order};
-  //         ApprovedUsers.add(user);
-  //       }
-  //     }
-  // }
-  // print(ApprovedUsers);
-     return MaterialApp(
-      home: Scaffold(
-
-        drawer: NavBar(),
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: Text('Approved'),
-          actions: 
-          <Widget>[
-                IconButton(onPressed: (){
-                 Navigator.push(context, MaterialPageRoute(builder: (context) => AppointmentRequested()));
-                  
-                }, icon: Icon(Icons.person_add),
-                iconSize: 35.0),
-                IconButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => AppointmentApproved()));
-                }, icon: Icon(Icons.fact_check_sharp),
-                iconSize: 35.0),
-
-               // SizedBox(width: 16.0),
-
-                IconButton(onPressed: (){
-
-                }, icon: Icon(Icons.notifications),
-                iconSize: 35.0)
-
-              ],
-              ),
-              
-        body: 
-        // FutureBuilder<List> {
-        //   future : getApprovedUsers(),
-        //   builder: (context, snap) {
-        //   if ((snap.data == null)) {
-        //     return const Center(child: CircularProgressIndicator());
-        //   } else {
-            Column(
-              children: [Expanded(
-                child: Container(
-                  //child: buildAppointmentLists(getApprovedUsers()),
-                  child: Column(
-    children: [Expanded(
-      child: ListView.builder(
-        itemCount: userOrders.length,
-      itemBuilder: (context, index){
-        return Card(
-          color: Colors.blue,
-          child: ListTile(
-            onTap:() {
-              
-              Navigator.push(context, MaterialPageRoute<void>(
-                builder: (BuildContext context) {
-                  return Scaffold(
-                    appBar: AppBar(
-                      title: Text(userOrders[index]['user_name']),
-                    ),
-                    body: buildAppointment( userOrders[index]['appointment'], fieldIcons),
-                  );
-                },
-              ));
-          
-              
-            },
-            leading: Icon(Icons.person),
-            title: Text(userOrders[index]['user_name']),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-              
-                IconButton(onPressed: () {}, icon: Icon(Icons.check)),
-                IconButton(onPressed: () {
-                  setState((){
-                    userOrders.removeAt(index);
-                  });
-
-                  
-                  
-                }, icon: Icon(Icons.close))
-                
-              ],
-            ),
-          )
-        );
-      },
-      ),)],),
-                ),
-                )]
-            )
-          
-        
-        
-        
-      
-    ),
-    );
-}
-
-List getApprovedUsers(){
-  for(var ele in userElement){
-      for(var order in ele["user_orders"]["appointment"]){
-        if(order["bookingDate"] == "2024-01-24 17:20:06.734" && order["status"] == "Approved"){
-          var user = {"user_name": ele['user_name'], "user_id" : ele['_id'], "appointment" : order};
-          ApprovedUsers.add(user);
-        }
-      }
-  }
-  return ApprovedUsers;
-}
-
-
-}
+]

@@ -19,12 +19,12 @@ class Appointments extends StatelessWidget{
           actions: 
           <Widget>[
                 IconButton(onPressed: (){
-                 Navigator.push(context, MaterialPageRoute(builder: (context) => Requested()));
+                 Navigator.push(context, MaterialPageRoute(builder: (context) => AppointmentRequested()));
                   
                 }, icon: Icon(Icons.person_add),
                 iconSize: 35.0),
                 IconButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Approved()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => AppointmentApproved()));
 
                 }, icon: Icon(Icons.fact_check_sharp),
                 iconSize: 35.0),
@@ -95,7 +95,7 @@ class Appointments extends StatelessWidget{
             ElevatedButton(
               
               onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Requested()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => AppointmentRequested()));
             }, 
             child: Text('Request'),)
             
