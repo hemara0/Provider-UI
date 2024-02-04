@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/components/RetriveData.dart';
 import 'package:flutter_application_1/components/approved.dart';
 import 'package:flutter_application_1/components/dashboardRecords.dart';
 import 'package:flutter_application_1/components/navbar.dart';
+import 'package:flutter_application_1/components/patientBasicDetails.dart';
 import 'package:flutter_application_1/components/requested.dart';
 import 'package:flutter_application_1/model/patient_model.dart';
 import 'package:flutter_application_1/pages/dashboardApproved.dart';
@@ -66,26 +68,27 @@ class _ProviderAppState extends State<ProviderApp>{
           
         
        body : 
-        Container(
-
-        //  child: Column(
-               
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   crossAxisAlignment: CrossAxisAlignment.center,
-        //    children: [
-        //     Padding(padding: const EdgeInsets.symmetric(vertical: 30),
-        //     child: SearchBar(),
-        //     ),
-        
+        Expanded(
            child:
            Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
            Expanded(child: SearchBar()) ,
+           Expanded(child: Row(
+            children: [
+              Expanded(
+                    child: PatientBasicStatic()
+                    ),
+                    Expanded(child: RetriveData())
+            ]
+              
+           ),),
+            
             Expanded(
               child: Row(
                 children: [
+                  
                     Expanded(
                       child: Catalogs(),
                     ),
@@ -98,20 +101,60 @@ class _ProviderAppState extends State<ProviderApp>{
             ),
            //SizedBox(height: 20.0),
            //Catalogs(),
-           ],) ,
+           ],
+           ) 
+           ));
 
            
-        //    ],
-        //  ),
-       ),
+      //   //    ],
+      //   //  ),
+      //  ),
+
+      
+  //    Column(
+  //     children: [Container(
+  //       height: 150,
+  //       child: SearchBar(),
+  //     ),
+  //     Column(
+  //       children: [Container(
+  //         child: 
+  //           PatientBasicStatic()
+          
+  //       ),
+        
+  //       ],
+  //     ),
+  //     Column(
+       
+  //         children: [Container(
+  //           child: Catalogs(),
+  //         )],
+        
+  //     )
+      
+  //     ],
+  //    )
        
        
-    );
-  }
+  //   );
+  // }
+}
 }
 
-class Catalogs extends StatelessWidget {
-  List imgData = [
+  
+  
+  
+ 
+//   State<Catalogs> createState() => _CatalogsState();
+
+
+// class _CatalogsState extends State<Catalogs>{s
+
+  //comment starts from here
+ 
+  Widget Catalogs() {
+    List imgData = [
     "assets/allergy.jpg",
     "assets/insurance.jpg",
     "assets/medications.jpg",
@@ -124,15 +167,6 @@ class Catalogs extends StatelessWidget {
     "Medications",
     "Procedures",
   ];
-  
-  
-  // @override
-  // State<Catalogs> createState() => _CatalogsState();
-
-
-//class _CatalogsState extends State<Catalogs>{
-  @override
-  Widget build(BuildContext context) {
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -147,9 +181,9 @@ class Catalogs extends StatelessWidget {
               
             },
             
-            child: SingleChildScrollView(
+           
               child: Container(
-               margin: EdgeInsets.symmetric(vertical: 8,horizontal: 20),
+               margin: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   boxShadow:[
@@ -160,11 +194,13 @@ class Catalogs extends StatelessWidget {
                   ),
                   ] 
                 ),
+                //child: SingleChildScrollView( // Wrapping Image.asset with SingleChildScrollView
+                //scrollDirection: Axis.vertical,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(imgData[index],
-                    width: 250,),
+                    width: 80,),
                     Text(titles[index],
                     style: TextStyle(
                       fontSize: 20,
@@ -172,10 +208,12 @@ class Catalogs extends StatelessWidget {
                     ),),
                   ],
                 ),
+                //),
               ),
-            ),
+            
           );
          },
+  
 
   //     primary: false,
   // padding: const EdgeInsets.all(20),
@@ -193,7 +231,35 @@ class Catalogs extends StatelessWidget {
   //   ),
    );
 }
-}
+
+//ends here
+// @override
+// Widget build(BuildContext context) {
+//   return GridView.builder(
+//     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//     crossAxisCount: 3, 
+//     mainAxisSpacing: 8.0, 
+//     crossAxisSpacing: 8.0, 
+//   ),
+//   padding: EdgeInsets.all(8.0), 
+//   itemCount: imgData.length, 
+//   itemBuilder: (context, index) {
+//     return Container(
+//       color: Colors.blue, 
+//       child: Center(
+//         child: Text(
+//           titles[index],
+//           style: TextStyle(fontSize: 18.0, color: Colors.white),
+//         ),
+//       ),
+//     );
+//   },
+//   );
+// }
+
+
+
+
 
 
 class SearchBar extends StatefulWidget {

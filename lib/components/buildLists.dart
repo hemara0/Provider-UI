@@ -32,10 +32,7 @@ Widget buildAppointmentLists(List userOrders){
                   );
                 },
               ));
-            
-              //print(userOrders[index]['appointment']);
-
-             // buildAppointment( userOrders[index]['appointment'], fieldIcons);
+          
               
             },
             leading: Icon(Icons.person),
@@ -46,9 +43,9 @@ Widget buildAppointmentLists(List userOrders){
               
                 IconButton(onPressed: () {}, icon: Icon(Icons.check)),
                 IconButton(onPressed: () {
-                  //setState(){
+                  setState(){
                     userOrders.removeAt(index);
-                  
+                  }
 
                   
                   

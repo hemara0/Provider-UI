@@ -1,22 +1,22 @@
 import 'dart:math';
 
-class UserLogin {
+class ProviderLogin {
   String userName;
   String password;
   String patientId;
   bool validate;
 
-  UserLogin(
+  ProviderLogin(
       {required this.userName,
       required this.password,
       required this.patientId,
       required this.validate});
 
-  factory UserLogin.fromJson(Map<String, dynamic> json) {
-    return UserLogin(
-        userName: json['username'],
-        password: json['password'],
-        patientId: json['patient_id'],
+  factory ProviderLogin.fromJson(Map<String, dynamic> json) {
+    return ProviderLogin(
+        userName: json['provider_username'],
+        password: json['provider_password'],
+        patientId: json['provider_id'],
         validate: json['validate']);
   }
 }

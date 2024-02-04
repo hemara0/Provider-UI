@@ -11,10 +11,10 @@ _setHeaders() => {
       "Access-Control-Allow-Origin": "*"
     };
 
-   Future<UserLogin> fetchUserLogin(username, password) async {
+   Future<ProviderLogin> fetchProviderLogin(username, password) async {
   // dynamic userData = {'username': username, 'password': password};
   // print(userData);
-  String _url = 'http://localhost:3000/login/username=${username}';
+  String _url = 'http://localhost:3000/providerlogin/username=${username}';
   print(_url);
   final url = Uri.parse(_url);
   try {
@@ -25,10 +25,10 @@ _setHeaders() => {
     print(json.decode(response.body));
 
     if (response.statusCode == 200) {
-      if (resBody[0]["username"] == username &&
-          resBody[0]["password"] == password) {
+      if (resBody[0]["provider_username"] == username &&
+          resBody[0]["provider_password"] == password) {
         resBody[0]["validate"] = true;
-        var userDeets = UserLogin.fromJson(resBody[0]);
+        var userDeets = ProviderLogin.fromJson(resBody[0]);
         //String patient_id = resBody[0]["patient_id"];
         //userDeets.validate = validate;
         // print(resBody[0]["validate"]);
@@ -53,9 +53,36 @@ _setHeaders() => {
     // Log the exception or handle it appropriately
     throw Exception('Error during login: $e');
   }
-  return UserLogin(
+  return ProviderLogin(
       userName: 'wrong',
       password: 'wrong',
       patientId: 'wrong',
       validate: false);
+}
+
+Future<List> fetchPatientData(patientID) async {
+  // dynamic userData = {'username': username, 'password': password};
+  // print(userData);
+  List patData = [];
+  String _url =
+      'http://localhost:4004/hapi-fhir-jpaserver/fhir/Patient/${patientID}';
+  print(_url);
+  final url = Uri.parse(_url);
+  try {
+    final response = await http.get(url);
+    var resBody = json.decode(response.body);
+    
+    //print(json.decode(response.body)['gender']);
+
+    patData.add(resBody['id']);
+    patData.add(resBody['name'][0]['given']+resBody['name'][0]['family']);
+    patData.add(resBody['gender']);
+    patData.add(resBody['birthDate']);
+    print('###############');
+    print(patData);
+    return patData;
+  } catch (e) {
+    print(e);
+  }
+  throw Exception('Exception entered');
 }

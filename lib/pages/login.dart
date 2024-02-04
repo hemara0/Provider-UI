@@ -115,28 +115,28 @@ class _LoginState extends State<Login> {
                       print(user_controller.text);
                       print(pass_controller.text);
 
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProviderApp()),
-                        );
-
-                      // print(_login[1].text);
-                      // UserLogin logindata = await fetchUserLogin(
-                      //     user_controller.text, pass_controller.text);
-                      // print('**********');
-                      // print(logindata);
-                      // if (logindata.validate == true) {
-                      //   print('right creds');
-                      //   Navigator.push(
+                      // Navigator.push(
                       //     context,
                       //     MaterialPageRoute(
                       //         builder: (context) => ProviderApp()),
                       //   );
-                      //   NavigationEx();
-                      // } else {
-                      //   print('Wrong creds');
-                      // }
+
+                     // print(_login[1].text);
+                      ProviderLogin logindata = await fetchProviderLogin(
+                          user_controller.text, pass_controller.text);
+                      print('**********');
+                      print(logindata);
+                      if (logindata.validate == true) {
+                        print('right creds');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProviderApp()),
+                        );
+                        //NavigationEx();
+                      } else {
+                        print('Wrong creds');
+                      }
                     },
                     minWidth: double.infinity,
                     child: Text('Login'),
