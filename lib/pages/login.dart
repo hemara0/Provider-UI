@@ -122,21 +122,21 @@ class _LoginState extends State<Login> {
                       //   );
 
                      // print(_login[1].text);
-                      ProviderLogin logindata = await fetchProviderLogin(
-                          user_controller.text, pass_controller.text);
-                      print('**********');
-                      print(logindata);
-                      if (logindata.validate == true) {
-                        print('right creds');
+                      // ProviderLogin logindata = await fetchProviderLogin(
+                      //     user_controller.text, pass_controller.text);
+                      // print('**********');
+                      // print(logindata);
+                      // if (logindata.validate == true) {
+                      //   print('right creds');
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => ProviderApp()),
                         );
                         //NavigationEx();
-                      } else {
-                        print('Wrong creds');
-                      }
+                      // } else {
+                      //   print('Wrong creds');
+                      // }
                     },
                     minWidth: double.infinity,
                     child: Text('Login'),

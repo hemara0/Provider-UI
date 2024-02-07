@@ -63,7 +63,7 @@ _setHeaders() => {
 Future<List> fetchPatientData(patientID) async {
   // dynamic userData = {'username': username, 'password': password};
   // print(userData);
-  List patData = [];
+  List<dynamic> patData = [];
   String _url =
       'http://localhost:4004/hapi-fhir-jpaserver/fhir/Patient/${patientID}';
   print(_url);
@@ -71,12 +71,15 @@ Future<List> fetchPatientData(patientID) async {
   try {
     final response = await http.get(url);
     var resBody = json.decode(response.body);
-    
-    //print(json.decode(response.body)['gender']);
+    print('###############');
+    print(json.decode(response.body)['gender']);
 
     patData.add(resBody['id']);
-    patData.add(resBody['name'][0]['given']+resBody['name'][0]['family']);
+    print(patData);
+    patData.add(resBody['name'][0]['given'][0]+" "+resBody['name'][0]['family']);
+    print(patData);
     patData.add(resBody['gender']);
+    print(patData);
     patData.add(resBody['birthDate']);
     print('###############');
     print(patData);
@@ -85,4 +88,31 @@ Future<List> fetchPatientData(patientID) async {
     print(e);
   }
   throw Exception('Exception entered');
+}
+
+Future<List> fetchAllergyRecord(patientID) async {
+  List allergyList = [];
+  String _url =
+      'http://localhost:4004/hapi-fhir-jpaserver/fhir/AllergyIntolerance?patient=${patientID}';
+  print(_url);
+  final url = Uri.parse(_url);
+   final response = await http.get(url);
+  var resBody = json.decode(response.body);
+  allergyList.add(resBody['total']);
+  allergyList.add(resBody['entry']);
+  print(resBody);
+  return allergyList;
+}
+Future<List> fetchProcedureRecord(patientID) async {
+  List procedureList = [];
+  String _url =
+      'http://localhost:4004/hapi-fhir-jpaserver/fhir/Procedure?patient=${patientID}';
+  print(_url);
+  final url = Uri.parse(_url);
+   final response = await http.get(url);
+  var resBody = json.decode(response.body);
+  procedureList.add(resBody['total']);
+  procedureList.add(resBody['entry']);
+  print(resBody);
+  return procedureList;
 }

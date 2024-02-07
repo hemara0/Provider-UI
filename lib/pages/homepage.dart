@@ -7,8 +7,11 @@ import 'package:flutter_application_1/components/navbar.dart';
 import 'package:flutter_application_1/components/patientBasicDetails.dart';
 import 'package:flutter_application_1/components/requested.dart';
 import 'package:flutter_application_1/model/patient_model.dart';
+import 'package:flutter_application_1/pages/Allergy.dart';
+import 'package:flutter_application_1/pages/Procedures.dart';
 import 'package:flutter_application_1/pages/dashboardApproved.dart';
 import 'package:flutter_application_1/pages/dashboardRequested.dart';
+import 'package:flutter_application_1/provider/providers.dart';
 
 
 
@@ -68,8 +71,6 @@ class _ProviderAppState extends State<ProviderApp>{
           
         
        body : 
-        Expanded(
-           child:
            Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -103,7 +104,7 @@ class _ProviderAppState extends State<ProviderApp>{
            //Catalogs(),
            ],
            ) 
-           ));
+           );
 
            
       //   //    ],
@@ -155,17 +156,19 @@ class _ProviderAppState extends State<ProviderApp>{
  
   Widget Catalogs() {
     List imgData = [
+      
     "assets/allergy.jpg",
-    "assets/insurance.jpg",
-    "assets/medications.jpg",
     "assets/procedures.jpg",
+    "assets/medications.jpg",
+    "assets/insurance.jpg",
   ];
  
   List titles = [
     "Allergy",
-    "Insurance",
+    "Procedures",    
     "Medications",
-    "Procedures",
+    "Insurance",
+    
   ];
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -173,12 +176,19 @@ class _ProviderAppState extends State<ProviderApp>{
         childAspectRatio: 1.1,
         mainAxisSpacing: 20),
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+       // physics: NeverScrollableScrollPhysics(),
         itemCount: 4,
          itemBuilder: (BuildContext context, int index) {  
           return InkWell(
             onTap: (){
-              
+              if(titles[index] == 'Allergy'){
+                //fetchAllergyRecord('821');
+                Navigator.push(context, MaterialPageRoute(builder: (context) => AllergyEx()));
+              }
+              else if(titles[index] == 'Procedures'){
+                //fetchAllergyRecord('821');
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ProcedureEx()));
+              }
             },
             
            
@@ -303,9 +313,9 @@ class _SearchBarState extends State<SearchBar>{
                   
                 ),
               ),
-              SizedBox(height: 20.0,),
-              Expanded(child: ListView(),
-              ),
+              //SizedBox(height: 15.0,),
+              //Expanded(child: ListView(),
+              //),
             ],
           ),
         ),
